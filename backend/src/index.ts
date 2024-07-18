@@ -113,9 +113,14 @@ wss.on('connection', (ws: WebSocket) => {
     games[currentroom].reset()
     players[currentroom][0]["gamestatus"]="W"
       reciverarray.forEach(cl=>cl.send(JSON.stringify({"currentPosition":games[currentroom].fen()})))
-
+      players[data.roomid.toString()].map((item:any)=>{
+        item.color=item.color=='B'?'W':'B';
+        
+      })
      // ws.send(JSON.stringify({"currentPosition":chess.fen()}))
+     
      reciverarray=[]
+
     }
  
    if(data.type=='Move')

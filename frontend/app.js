@@ -15,8 +15,18 @@ function resetgame()
     type: "Reset",
     roomid: sessionStorage.getItem("roomid"),
    
-})); 
+})
+); 
 document.getElementById("notifications").style.display="none";
+console.log("my turn",sessionStorage.getItem("turn"));
+if(sessionStorage.getItem("turn")=="B"){
+  sessionStorage.setItem("turn","W");
+}
+else{
+  sessionStorage.setItem("turn","B"); 
+}
+board1.orientation(sessionStorage.getItem("turn") == "B" ? "black" : "white");
+console.log("now my turn is",sessionStorage.getItem("turn"));
 }
   function onDrop(source, target, piece, newPos, oldPos, orientation) {
       socket.send(JSON.stringify({
@@ -69,15 +79,17 @@ document.getElementById("notifications").style.display="none";
           document.getElementById("player1").innerHTML = "You";
           document.getElementById("player2").innerHTML = "Opponent";
       }
-
+      if(currentPosition.players){
       for (let item of currentPosition.players) {
           if (sessionStorage.getItem("playername") == item.player) {
               sessionStorage.setItem("turn", item.color);
           }
       }
-
+    }
+    if( currentPosition.players){
       document.getElementById("turn-teller").textContent = currentPosition.players[0]["gamestatus"];
-      //console.log("myturn", sessionStorage.getItem("turn"));
+    }
+      console.log("myturn", sessionStorage.getItem("turn"));
 
       // Update board position and orientation
       board1.position(currentPosition.currentPosition);
