@@ -91,7 +91,7 @@ wss.on('connection', (ws: WebSocket) => {
        
      }
   
-     reciverarray.forEach(cl=>cl.send(JSON.stringify({"currentPosition":games[currentroom].fen(),"players":players[currentroom]})))
+     reciverarray.forEach(cl=>cl.send(JSON.stringify({"currentPosition":games[currentroom].fen(),"players":players[currentroom],"resetgame":false})))
     // console.log("game in current room",games[currentroom]);
     }
 
@@ -112,7 +112,7 @@ wss.on('connection', (ws: WebSocket) => {
     //  console.log("Game ",players[currentroom][0]["gamestatus"]);
     games[currentroom].reset()
     players[currentroom][0]["gamestatus"]="W"
-      reciverarray.forEach(cl=>cl.send(JSON.stringify({"currentPosition":games[currentroom].fen()})))
+      reciverarray.forEach(cl=>cl.send(JSON.stringify({"currentPosition":games[currentroom].fen(),"resetgame":true})))
       players[data.roomid.toString()].map((item:any)=>{
         item.color=item.color=='B'?'W':'B';
         
@@ -200,7 +200,7 @@ wss.on('connection', (ws: WebSocket) => {
       }
     //  console.log("Game ",players[currentroom][0]["gamestatus"]);
 
-      reciverarray.forEach(cl=>cl.send(JSON.stringify({"currentPosition":games[currentroom].fen(),"players":players[currentroom],"gamestatus":players[currentroom][0]["gamestatus"],"gameover":games[currentroom].isCheckmate(),"probableWinner":currentturn,"isdraw":isdraw})))
+      reciverarray.forEach(cl=>cl.send(JSON.stringify({"currentPosition":games[currentroom].fen(),"players":players[currentroom],"gamestatus":players[currentroom][0]["gamestatus"],"gameover":games[currentroom].isCheckmate(),"probableWinner":currentturn,"isdraw":isdraw,"resetgame":false})))
 
      // ws.send(JSON.stringify({"currentPosition":chess.fen()}))
      reciverarray=[]
@@ -216,7 +216,7 @@ wss.on('connection', (ws: WebSocket) => {
         }
         
       }
-      reciverarray.forEach(cl=>cl.send(JSON.stringify({"currentPosition":games[currentroom].fen(),"players":players[currentroom]})))
+      reciverarray.forEach(cl=>cl.send(JSON.stringify({"currentPosition":games[currentroom].fen(),"players":players[currentroom],"resetgame":false})))
      // ws.send(JSON.stringify({"currentPosition":chess.fen()}))
      reciverarray=[]
     }
@@ -245,7 +245,7 @@ wss.on('connection', (ws: WebSocket) => {
     }
     
   }
-  reciverarray.forEach(cl=>cl.send(JSON.stringify({"currentPosition":games[currentroom].fen(),"players":players[currentroom]})))
+  reciverarray.forEach(cl=>cl.send(JSON.stringify({"currentPosition":games[currentroom].fen(),"players":players[currentroom],"resetgame":false})))
   }
   });
 

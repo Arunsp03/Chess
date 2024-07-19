@@ -74,6 +74,7 @@ console.log("now my turn is",sessionStorage.getItem("turn"));
         document.getElementById("message").textContent="Draw";
        
       }
+ 
 
       if (currentPosition.players && currentPosition.players.length == 2 && !document.getElementById("player1").innerHTML && !document.getElementById("player2").innerHTML) {
           document.getElementById("player1").innerHTML = "You";
@@ -89,6 +90,10 @@ console.log("now my turn is",sessionStorage.getItem("turn"));
     if( currentPosition.players){
       document.getElementById("turn-teller").textContent = currentPosition.players[0]["gamestatus"];
     }
+    if(currentPosition.reset==true)
+      {
+        document.getElementById("notifications").style.display="none";
+      }
       console.log("myturn", sessionStorage.getItem("turn"));
 
       // Update board position and orientation
@@ -96,4 +101,5 @@ console.log("now my turn is",sessionStorage.getItem("turn"));
       board1.orientation(sessionStorage.getItem("turn") == "B" ? "black" : "white");
      // console.log("orientation", sessionStorage.getItem("turn") == "B" ? "black" : "white");
   };
+  
 });

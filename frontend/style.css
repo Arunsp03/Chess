@@ -70,8 +70,10 @@ align-items: center;
     margin: auto;
     position: fixed;
     bottom: 10px;
+    background-color: white;
     display: none;
-
+z-index: 3;
+top: 10%;
 }
 #notifications button
 {
