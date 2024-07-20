@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 function resetgame()
 {
-  console.log("hit reset");
+//  console.log("hit reset");
   socket.send(JSON.stringify({
     type: "Reset",
     roomid: sessionStorage.getItem("roomid"),
@@ -18,7 +18,7 @@ function resetgame()
 })
 ); 
 document.getElementById("notifications").style.display="none";
-console.log("my turn",sessionStorage.getItem("turn"));
+//console.log("my turn",sessionStorage.getItem("turn"));
 if(sessionStorage.getItem("turn")=="B"){
   sessionStorage.setItem("turn","W");
 }
@@ -26,7 +26,7 @@ else{
   sessionStorage.setItem("turn","B"); 
 }
 board1.orientation(sessionStorage.getItem("turn") == "B" ? "black" : "white");
-console.log("now my turn is",sessionStorage.getItem("turn"));
+//console.log("now my turn is",sessionStorage.getItem("turn"));
 }
   function onDrop(source, target, piece, newPos, oldPos, orientation) {
       socket.send(JSON.stringify({
@@ -60,7 +60,7 @@ console.log("now my turn is",sessionStorage.getItem("turn"));
 
   socket.onmessage = e => {
       let currentPosition = JSON.parse(e.data);
-      console.log("position", currentPosition);
+     // console.log("position", currentPosition);
 
       if (currentPosition.gameover) {
         document.getElementById("notifications").style.display="flex";
@@ -94,7 +94,7 @@ console.log("now my turn is",sessionStorage.getItem("turn"));
       {
         document.getElementById("notifications").style.display="none";
       }
-      console.log("myturn", sessionStorage.getItem("turn"));
+     // console.log("myturn", sessionStorage.getItem("turn"));
 
       // Update board position and orientation
       board1.position(currentPosition.currentPosition);

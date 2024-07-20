@@ -67,7 +67,7 @@ wss.on('connection', (ws: WebSocket) => {
         games[data.roomid.toString()]=room_chess;
         room_chess=null;
       }
-      console.log(rooms[data.roomid.toString()].length);
+     // console.log(rooms[data.roomid.toString()].length);
      }
 
      for(let item in rooms)
@@ -97,7 +97,7 @@ wss.on('connection', (ws: WebSocket) => {
 
     if(data.type=='Reset')
     {
-      console.log("reset hit");
+    //  console.log("reset hit");
       
       let reciverarray:any[]=[];
       for(let item in rooms)
@@ -156,8 +156,8 @@ wss.on('connection', (ws: WebSocket) => {
       }
       let currentturn:string='';
       let isdraw:boolean;
-      console.log("turn",data.turn);
-      console.log("game status",players[currentroom][0]["gamestatus"]);
+      //console.log("turn",data.turn);
+     // console.log("game status",players[currentroom][0]["gamestatus"]);
       
       
       // console.log("ws",ws);
@@ -187,7 +187,7 @@ wss.on('connection', (ws: WebSocket) => {
           
         }
     
-      console.log(games[currentroom].ascii())
+     // console.log(games[currentroom].ascii())
       let reciverarray:any[]=[];
       for(let item in rooms)
       {
@@ -231,7 +231,7 @@ wss.on('connection', (ws: WebSocket) => {
         }
         
       }
-  console.log(error.toString());
+  //console.log(error.toString());
  // console.log("cuurent room is",currentroom);
   
   //console.log("error in game",games[currentroom].ascii());  
@@ -264,7 +264,7 @@ wss.on('connection', (ws: WebSocket) => {
         
       }
       
-    console.log('Client disconnected');
+    //console.log('Client disconnected');
     games[currentroom].reset()
   });
 });
